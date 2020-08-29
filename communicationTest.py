@@ -45,6 +45,16 @@ def changeXML(m):
         tree.write('communication.xml')
     os.system("git commit -am 'update'")
     os.system('git push')
+    user = ''
+    password = '' 
+    with open('loginuser.txt', 'r') as file:
+        user = file.read()
+        file.close()
+    with open('password.txt', 'r') as file:
+        password = file.read()
+        file.close()
+    os.system(str(user))
+    os.system(str(password))
 
 os.system('clear')
 discover()
