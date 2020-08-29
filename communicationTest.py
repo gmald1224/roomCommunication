@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 import bluetooth
 import os
+import pyautogui
    
 def pullXML():
     url = 'https://raw.githubusercontent.com/gmaldona/communicationTest/master/communication.xml'
@@ -44,17 +45,15 @@ def changeXML(m):
         message.text = str(m)
         tree.write('communication.xml')
     os.system("git commit -am 'update'")
-    os.system('git push')
-    user = ''
-    password = '' 
-    with open('loginuser.txt', 'r') as file:
-        user = file.read()
-        file.close()
-    with open('password.txt', 'r') as file:
-        password = file.read()
-        file.close()
-    os.system(str(user))
-    os.system(str(password))
+    os.system('xdg-open lxterminal.desktop')
+    pyautogui.write('python3 controller.py')
+    pyautogui.press('enter')
+    pyautogui.hotkey('alt', 'tab')
+    pyautogui.write('cd')
+    pyautogui.press('enter')
+    pyautogui.write('cd Desktop/roomCommunication/')
+    pyautogui.write('git push')
+    pyautogui.press('enter')
 
 os.system('clear')
 discover()
